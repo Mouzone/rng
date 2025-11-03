@@ -1,7 +1,7 @@
 <script lang="ts">
 	let numbersToGen = $state(1);
 	let incl = $state("including");
-	let withRep = $state("with replacement");
+	let withRep = $state("without replacement");
 	let min = $state(0);
 	let max = $derived(min + (incl === "including" ? 1 : 2));
 	const results: Number[] = $state([]);
@@ -15,6 +15,20 @@
 			} else {
 				result = Math.floor(Math.random() * (max - min - 1)) + min + 1;
 			}
+			if (withRep === "with replacement") {
+				while (results.includes(result)) {
+					if (incl === "including") {
+						result =
+							Math.floor(Math.random() * (max - min + 1)) + min;
+					} else {
+						result =
+							Math.floor(Math.random() * (max - min - 1)) +
+							min +
+							1;
+					}
+				}
+			}
+
 			results.push(result);
 		}
 	}
