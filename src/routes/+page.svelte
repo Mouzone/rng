@@ -9,12 +9,12 @@
 	function generate() {
 		results.length = 0;
 		for (let i = 0; i < numbersToGen; i += 1) {
-			const offset = incl === "including" ? 1 : 0;
-			const effectiveMin = min + offset;
-			const effectiveMax = max - offset;
-			const result =
-				Math.floor(Math.random() * (effectiveMax - effectiveMin)) +
-				effectiveMin;
+			let result;
+			if (incl === "including") {
+				result = Math.floor(Math.random() * (max + 1 - min)) + min;
+			} else {
+				result = Math.floor(Math.random() * (max - min + 1)) + min;
+			}
 			results.push(result);
 		}
 	}
@@ -28,14 +28,15 @@
 	/>
 	number(s)
 	<select bind:value={withRep}>
-		<option>with replacement</option>
-		<option>without replacement</option>
+		<option value="with replacement">with replacement</option>
+		<option value="without replacement">without replacement</option>
 	</select>
 	between and
-	<select bind:value={incl}
-		><option>including</option>
-		<option>not including</option></select
-	><input
+	<select bind:value={incl}>
+		<option value="including">including</option>
+		<option value="not including">not including</option>
+	</select>
+	<input
 		type="number"
 		bind:value={min}
 	/>
