@@ -46,7 +46,7 @@
 		bind:value={max}
 	/>
 </p>
-<div>
+<div style="display: flex; gap: 1em;">
 	{#each results as result}
 		<p>{result}</p>
 	{/each}
