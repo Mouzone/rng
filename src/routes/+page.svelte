@@ -11,9 +11,9 @@
 		for (let i = 0; i < numbersToGen; i += 1) {
 			let result;
 			if (incl === "including") {
-				result = Math.floor(Math.random() * (max + 1 - min)) + min;
-			} else {
 				result = Math.floor(Math.random() * (max - min + 1)) + min;
+			} else {
+				result = Math.floor(Math.random() * (max - min - 1)) + min + 1;
 			}
 			results.push(result);
 		}
