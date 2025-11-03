@@ -3,7 +3,17 @@
 	let incl = $state("including");
 	let withRep = $state("without replacement");
 	let min = $state(0);
-	let max = $derived(min + (incl === "including" ? 1 : 2));
+	let max = $derived.by(() => {
+		if (withRep === "with replacement") {
+			return min + numbersToGen;
+		} else {
+			if (incl === "including") {
+				return min + 1;
+			} else {
+				return min + 2;
+			}
+		}
+	});
 	const results: Number[] = $state([]);
 
 	function generate() {
