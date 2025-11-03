@@ -8,7 +8,7 @@
 
 	function generate() {
 		results.length = 0;
-		for (let i = 0; i < numbersToGen; i += 1) {
+		while (results.length < numbersToGen) {
 			let result;
 			if (incl === "including") {
 				result = Math.floor(Math.random() * (max - min + 1)) + min;
