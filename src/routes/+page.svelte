@@ -5,7 +5,15 @@
 	let min = $state(0);
 	let max = $derived.by(() => {
 		if (withRep === "with replacement") {
-			return min + numbersToGen;
+			if (numbersToGen > (incl === "including" ? 1 : 2)) {
+				return min + numbersToGen;
+			} else {
+				if (incl === "including") {
+					return min + 1;
+				} else {
+					return min + 2;
+				}
+			}
 		} else {
 			if (incl === "including") {
 				return min + 1;
