@@ -120,14 +120,21 @@
 </div>
 
 <style>
+	@font-face {
+		font-family: "Cooper Black";
+		src: url(/COOPBL.TTF) format("truetype");
+		font-weight: 900;
+		font-style: normal;
+	}
 	#page {
 		height: 100dvh;
 		width: 100dvw;
 
+		font-family: "Cooper Black", serif;
 		background-color: #eaf9d9;
 		color: #653239;
 		font-weight: bolder;
-		font-size: 3em;
+		font-size: 2em;
 
 		display: flex;
 		flex-direction: column;
