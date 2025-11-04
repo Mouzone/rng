@@ -1,7 +1,7 @@
 <script lang="ts">
 	let numbersToGenInput = $state("1");
 	let incl = $state("including");
-	let withRep = $state("without replacement");
+	let withRep = $state("with replacement");
 	let minInput = $state("0");
 	let maxInput = $state("0");
 
@@ -40,7 +40,6 @@
 	function generate() {
 		results.length = 0;
 
-		// Pre-calculate effective min/max for this generation
 		const actualMin = incl === "including" ? min : min + 1;
 		const actualMax = incl === "including" ? max : max - 1;
 		const span = actualMax - actualMin + 1;
@@ -48,10 +47,7 @@
 		while (results.length < numbersToGen) {
 			let result = Math.floor(Math.random() * span) + actualMin;
 
-			// --- FIX: Logic inverted to "without replacement" ---
 			if (withRep === "without replacement") {
-				// Keep generating a new number until we find one
-				// not already in the results
 				while (results.includes(result)) {
 					result = Math.floor(Math.random() * span) + actualMin;
 				}
