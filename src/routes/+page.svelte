@@ -122,6 +122,10 @@
 		height: 100dvh;
 		width: 100dvw;
 
+		background-color: #e5eb34;
+		color: #ebc034;
+		font-weight: bolder;
+
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
