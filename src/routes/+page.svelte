@@ -21,6 +21,17 @@
 	});
 	const results: Number[] = $state([]);
 
+	function handleMinInput(e) {
+		const roundedValue = Math.round(e.currentTarget.valueAsNumber);
+		const absoluteValue = Math.abs(roundedValue);
+		min = absoluteValue;
+	}
+
+	function handleMaxInput(e) {
+		const roundedValue = Math.round(e.currentTarget.valueAsNumber);
+		const absoluteValue = Math.abs(roundedValue);
+		max = absoluteValue;
+	}
 	function generate() {
 		results.length = 0;
 		while (results.length < numbersToGen) {
@@ -68,11 +79,13 @@
 	<input
 		type="number"
 		bind:value={min}
+		oninput={handleMinInput}
 	/>
 	and
 	<input
 		type="number"
 		bind:value={max}
+		oninput={handleMaxInput}
 	/>
 </p>
 <div style="display: flex; gap: 1em;">
