@@ -1,4 +1,6 @@
 <script lang="ts">
+	import "normalize.css";
+
 	let numbersToGenInput = $state("1");
 	let incl = $state("including");
 	let withRep = $state("without replacement");
@@ -122,9 +124,10 @@
 		height: 100dvh;
 		width: 100dvw;
 
-		background-color: #e5eb34;
-		color: #ebc034;
+		background-color: #eaf9d9;
+		color: #653239;
 		font-weight: bolder;
+		font-size: 3em;
 
 		display: flex;
 		flex-direction: column;
