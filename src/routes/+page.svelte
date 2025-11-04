@@ -3,22 +3,19 @@
 	let incl = $state("including");
 	let withRep = $state("without replacement");
 	let min = $state(0);
-	let max = $derived.by(() => {
-		if (withRep === "with replacement") {
-			if (numbersToGen > (incl === "including" ? 1 : 2)) {
-				return min + numbersToGen;
+	let max = $state(0);
+	let disabled = $derived.by(() => {
+		if (incl === "including") {
+			if (withRep === "without replacement") {
+				return max - min < 1;
 			} else {
-				if (incl === "including") {
-					return min + 1;
-				} else {
-					return min + 2;
-				}
+				return max - min < numbersToGen;
 			}
 		} else {
-			if (incl === "including") {
-				return min + 1;
+			if (withRep === "without replacement") {
+				return max - min < 2;
 			} else {
-				return min + 2;
+				return max - min - 1 < numbersToGen;
 			}
 		}
 	});
@@ -84,4 +81,9 @@
 	{/each}
 </div>
 
-<button onclick={generate}> Generate </button>
+<button
+	onclick={generate}
+	{disabled}
+>
+	Generate
+</button>
