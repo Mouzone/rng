@@ -1,7 +1,7 @@
 <script lang="ts">
 	let numbersToGenInput = $state("1");
 	let incl = $state("including");
-	let withRep = $state("with replacement");
+	let withRep = $state("without replacement");
 	let minInput = $state("0");
 	let maxInput = $state("0");
 
@@ -34,7 +34,19 @@
 
 	function handleInput(e: Event) {
 		const target = e.currentTarget as HTMLInputElement;
-		return target.value.replace(/\D/g, "");
+
+		if (target.value.length === 0) {
+			return "0";
+		}
+
+		const digitsOnly = target.value.replace(/\D/g, "");
+		const noLeadingZeros = digitsOnly.replace(/^0+/, "");
+
+		if (digitsOnly.length > 0 && noLeadingZeros.length === 0) {
+			return "0";
+		}
+
+		return noLeadingZeros;
 	}
 
 	function generate() {
