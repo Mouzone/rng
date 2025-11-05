@@ -1,7 +1,7 @@
 <script lang="ts">
 	import "normalize.css";
 
-	let dialogElement: HTMLElement | null = $state(null);
+	let dialogElement: HTMLDialogElement | null = $state(null);
 	let numbersToGenInput = $state("1");
 	let incl = $state("including");
 	let withRep = $state("without replacement");
