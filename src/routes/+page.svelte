@@ -17,21 +17,23 @@
 
 	let rangeSize = $derived(Math.max(0, effMax - effMin + 1));
 
-	let disabled = $derived.by(() => {
-		if (effMax < effMin) {
-			return true;
-		}
+	let disabled = $derived(
+		(() => {
+			if (effMax < effMin) {
+				return true;
+			}
 
-		if (numbersToGen <= 0) {
-			return true;
-		}
+			if (numbersToGen <= 0) {
+				return true;
+			}
 
-		if (withRep === "without replacement" && rangeSize < numbersToGen) {
-			return true;
-		}
+			if (withRep === "without replacement" && rangeSize < numbersToGen) {
+				return true;
+			}
 
-		return false;
-	});
+			return false;
+		})()
+	);
 
 	let results: number[] = $state([]);
 
@@ -86,6 +88,7 @@
 			<button onclick={() => dialogElement?.close()}> Return </button>
 		</div>
 	</dialog>
+
 	<div id="generator">
 		<p>
 			Generate
@@ -120,7 +123,6 @@
 			<input
 				inputmode="numeric"
 				id="left"
-				class="range-input"
 				bind:value={minInput}
 				oninput={(e) => (minInput = handleInput(e))}
 			/>
@@ -128,7 +130,6 @@
 			<input
 				inputmode="numeric"
 				id="right"
-				class="range-input"
 				bind:value={maxInput}
 				oninput={(e) => (maxInput = handleInput(e))}
 			/>
@@ -150,95 +151,126 @@
 		font-weight: 400;
 		font-style: normal;
 	}
+
 	#page {
+		--bg: #f5f5dc;
+		--text: #7b3f00;
+		--primary: #b7410e;
+		--secondary: #da9100;
+		--light-text: #f5f5dc;
+		--shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.08),
+			0 6px 20px 0 rgba(0, 0, 0, 0.06);
+
 		height: 100dvh;
 		width: 100dvw;
 
 		font-family: "Spicy Rice", serif;
-		background-color: #f5f5dc;
-		color: #7b3f00;
-		font-weight: bolder;
-		font-size: 2em;
+		background-color: var(--bg);
+		color: var(--text);
+
+		font-size: 3em;
 
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
 		align-items: center;
 	}
+
 	#generator {
 		display: flex;
 		flex-direction: column;
-		justify-content: center;
 		align-items: center;
 	}
 	p {
 		text-align: center;
 		margin-bottom: 0.5em;
 	}
+
 	input,
 	select {
-		margin: 0;
 		padding: 0;
-
+		margin: 0;
 		background-color: transparent;
-		color: #7b3f00;
-
 		text-align: center;
 		appearance: none;
 		border: none;
 		outline: none;
+
+		font-family: inherit;
+		font-size: inherit;
+		color: inherit;
 	}
+
 	#left {
 		text-align: right;
-	}
-	#right {
-		text-align: left;
-	}
-	input.range-input {
 		width: 40%;
 	}
-	button,
-	button:disabled:hover {
-		background-color: #b7410e;
-		color: #f5f5dc;
+
+	#right {
+		text-align: left;
+		width: 40%;
+	}
+
+	button {
+		background-color: var(--primary);
+		color: var(--light-text);
 		border: none;
 		outline: none;
 		border-radius: 30px;
 		padding: 0.5em;
 	}
-	button:hover {
-		background-color: #da9100;
-		color: #7b3f00;
+
+	button:focus-visible,
+	input:focus-visible,
+	select:focus-visible {
+		outline: 3px solid var(--secondary);
+		outline-offset: 3px;
 	}
-	button:disabled {
+
+	button:hover {
+		background-color: var(--secondary);
+		color: var(--text);
+	}
+
+	button:disabled,
+	button:disabled:hover {
+		background-color: var(--primary);
+		color: var(--light-text);
 		opacity: 0.6;
 		cursor: not-allowed;
 	}
+
 	dialog {
-		font-size: 2em;
+		padding: 0.5em;
+		width: 70%;
 		border: none;
-		background-color: #f5f5dc;
-		color: #7b3f00;
-		box-shadow:
-			0 4px 12px 0 rgba(0, 0, 0, 0.08),
-			0 6px 20px 0 rgba(0, 0, 0, 0.06);
 		border-radius: 30px;
+		box-shadow: var(--shadow);
+		background-color: var(--bg);
+		color: var(--text);
 	}
+
+	dialog::backdrop {
+		background-color: rgba(0, 0, 0, 0.4);
+		backdrop-filter: blur(2px);
+	}
+
 	#dialog-contents {
 		display: flex;
 		flex-direction: column;
 		align-items: center;
 	}
-	#dialog-contents > button {
-		font-size: 0.5em;
-		border-radius: 30px;
-	}
+
 	#results-container {
 		width: 90%;
 		display: flex;
 		gap: 0.5em;
-		overflow: scroll;
+		overflow-x: auto;
 		align-items: center;
 		justify-content: center;
+	}
+
+	#dialog-contents > button {
+		font-size: 0.5em;
 	}
 </style>
