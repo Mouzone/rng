@@ -166,13 +166,14 @@
 	}
 	p {
 		text-align: center;
+		margin-bottom: 0.5em;
 	}
 	input,
 	select {
 		margin: 0;
 		padding: 0;
 
-		background-color: #f5f5dc;
+		background-color: transparent;
 		color: #7b3f00;
 
 		text-align: center;
