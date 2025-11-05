@@ -1,6 +1,7 @@
 <script lang="ts">
 	import "normalize.css";
 
+	let popoverElement: HTMLElement | null = $state(null);
 	let numbersToGenInput = $state("1");
 	let incl = $state("including");
 	let withRep = $state("without replacement");
@@ -69,6 +70,7 @@
 
 			results.push(result);
 		}
+		popoverElement?.togglePopover();
 	}
 </script>
 
@@ -128,12 +130,14 @@
 			Generate
 		</button>
 	</div>
-
-	<div style="display: flex; gap: 1em;">
-		{#each results as result}
-			<p>{result}</p>
-		{/each}
-	</div>
+</div>
+<div
+	popover
+	bind:this={popoverElement}
+>
+	{#each results as result}
+		<p>{result}</p>
+	{/each}
 </div>
 
 <style>
