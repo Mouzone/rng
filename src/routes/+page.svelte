@@ -76,29 +76,46 @@
 	<div id="generator">
 		<p>
 			Generate
+			<br />
+
 			<input
 				inputmode="numeric"
 				bind:value={numbersToGenInput}
 				oninput={(e) => (numbersToGenInput = handleInput(e))}
 			/>
-			number(s)
+			<br />
+			{#if numbersToGen === 1}
+				number
+			{:else}
+				numbers
+			{/if}
+			<br />
 			<select bind:value={withRep}>
 				<option value="with replacement">with replacement</option>
 				<option value="without replacement">without replacement</option>
 			</select>
+			<br />
 			between and
+			<br />
+
 			<select bind:value={incl}>
 				<option value="including">including</option>
 				<option value="not including">not including</option>
 			</select>
+			<br />
+
 			<input
 				inputmode="numeric"
+				id="left"
+				class="range-input"
 				bind:value={minInput}
 				oninput={(e) => (minInput = handleInput(e))}
 			/>
 			and
 			<input
 				inputmode="numeric"
+				id="right"
+				class="range-input"
 				bind:value={maxInput}
 				oninput={(e) => (maxInput = handleInput(e))}
 			/>
@@ -152,13 +169,24 @@
 	}
 	input,
 	select {
+		margin: 0;
+		padding: 0;
+
+		background-color: #eaf9d9;
+		color: #653239;
+
 		text-align: center;
-		margin: 0, 1em, 1em, 0;
+		appearance: none;
+		border: none;
+		outline: none;
 	}
-	input {
-		width: 2em;
+	#left {
+		text-align: right;
 	}
-	select {
-		width: 12em;
+	#right {
+		text-align: left;
+	}
+	input.range-input {
+		width: 40%;
 	}
 </style>
