@@ -214,6 +214,7 @@
 	button {
 		background-color: var(--primary);
 		color: var(--light-text);
+		box-shadow: var(--shadow);
 		border: none;
 		outline: none;
 		border-radius: 30px;
@@ -268,9 +269,5 @@
 		overflow-x: auto;
 		align-items: center;
 		justify-content: center;
-	}
-
-	#dialog-contents > button {
-		font-size: 0.5em;
 	}
 </style>
