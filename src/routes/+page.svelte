@@ -1,7 +1,7 @@
 <script lang="ts">
 	import "normalize.css";
 
-	let popoverElement: HTMLElement | null = $state(null);
+	let dialogElement: HTMLElement | null = $state(null);
 	let numbersToGenInput = $state("1");
 	let incl = $state("including");
 	let withRep = $state("without replacement");
@@ -70,11 +70,22 @@
 
 			results.push(result);
 		}
-		popoverElement?.togglePopover();
+		dialogElement?.showModal();
 	}
 </script>
 
 <div id="page">
+	<dialog bind:this={dialogElement}>
+		<div id="dialog-contents">
+			<div id="results-container">
+				{#each results as result}
+					<p>{result}</p>
+				{/each}
+			</div>
+
+			<button onclick={() => dialogElement?.close()}> Return </button>
+		</div>
+	</dialog>
 	<div id="generator">
 		<p>
 			Generate
@@ -130,14 +141,6 @@
 			Generate
 		</button>
 	</div>
-</div>
-<div
-	popover
-	bind:this={popoverElement}
->
-	{#each results as result}
-		<p>{result}</p>
-	{/each}
 </div>
 
 <style>
@@ -200,8 +203,8 @@
 		color: #f5f5dc;
 		border: none;
 		outline: none;
-		border-radius: 5px;
-		padding: 0.4em;
+		border-radius: 30px;
+		padding: 0.5em;
 	}
 	button:hover {
 		background-color: #da9100;
@@ -210,5 +213,32 @@
 	button:disabled {
 		opacity: 0.6;
 		cursor: not-allowed;
+	}
+	dialog {
+		font-size: 2em;
+		border: none;
+		background-color: #f5f5dc;
+		color: #7b3f00;
+		box-shadow:
+			0 4px 12px 0 rgba(0, 0, 0, 0.08),
+			0 6px 20px 0 rgba(0, 0, 0, 0.06);
+		border-radius: 30px;
+	}
+	#dialog-contents {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
+	#dialog-contents > button {
+		font-size: 0.5em;
+		border-radius: 30px;
+	}
+	#results-container {
+		width: 90%;
+		display: flex;
+		gap: 0.5em;
+		overflow: scroll;
+		align-items: center;
+		justify-content: center;
 	}
 </style>
