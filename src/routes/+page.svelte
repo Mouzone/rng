@@ -138,18 +138,18 @@
 
 <style>
 	@font-face {
-		font-family: "Cooper Black";
-		src: url(/COOPBL.TTF) format("truetype");
-		font-weight: 900;
+		font-family: "Spicy Rice";
+		src: url(/Spicy_Rice/SpicyRice-Regular.ttf) format("truetype");
+		font-weight: 400;
 		font-style: normal;
 	}
 	#page {
 		height: 100dvh;
 		width: 100dvw;
 
-		font-family: "Cooper Black", serif;
-		background-color: #eaf9d9;
-		color: #653239;
+		font-family: "Spicy Rice", serif;
+		background-color: #f5f5dc;
+		color: #7b3f00;
 		font-weight: bolder;
 		font-size: 2em;
 
@@ -172,8 +172,8 @@
 		margin: 0;
 		padding: 0;
 
-		background-color: #eaf9d9;
-		color: #653239;
+		background-color: #f5f5dc;
+		color: #7b3f00;
 
 		text-align: center;
 		appearance: none;
@@ -188,5 +188,17 @@
 	}
 	input.range-input {
 		width: 40%;
+	}
+	button {
+		background-color: #b7410e;
+		color: #f5f5dc;
+		border: none;
+		outline: none;
+		border-radius: 5px;
+		padding: 0.4em;
+	}
+	button:hover {
+		background-color: #da9100;
+		color: #7b3f00;
 	}
 </style>
