@@ -194,7 +194,8 @@
 	input.range-input {
 		width: 40%;
 	}
-	button {
+	button,
+	button:disabled:hover {
 		background-color: #b7410e;
 		color: #f5f5dc;
 		border: none;
@@ -205,5 +206,9 @@
 	button:hover {
 		background-color: #da9100;
 		color: #7b3f00;
+	}
+	button:disabled {
+		opacity: 0.6;
+		cursor: not-allowed;
 	}
 </style>
