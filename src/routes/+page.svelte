@@ -217,15 +217,23 @@
 
 		background-color: transparent;
 		color: var(--primary);
+		text-decoration-line: underline;
+		text-decoration-style: wavy;
+		text-decoration-color: var(--primary);
+
+		text-underline-offset: 5px;
+		text-decoration-thickness: 6px;
 	}
 	button:disabled {
 		opacity: 60%;
 	}
 	button:hover {
 		color: var(--secondary);
+		text-decoration-color: var(--secondary);
 	}
 	button:hover:disabled {
 		color: var(--primary);
+		text-decoration-color: var(--primary);
 	}
 
 	dialog {
