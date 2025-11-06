@@ -1,6 +1,4 @@
 <script lang="ts">
-	import "normalize.css";
-
 	let dialogElement: HTMLDialogElement | null = $state(null);
 	let numbersToGenInput = $state("1");
 	let incl = $state("including");
@@ -153,7 +151,7 @@
 		font-style: normal;
 	}
 
-	#page {
+	:global(body) {
 		--bg: #f5f5dc;
 		--text: #7b3f00;
 		--primary: #b7410e;
@@ -163,12 +161,13 @@
 		--shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.08),
 			0 6px 20px 0 rgba(0, 0, 0, 0.06);
 
-		height: 100dvh;
-		width: 100dvw;
-
 		font-family: "Spicy Rice", serif;
 		background-color: var(--bg);
 		color: var(--text);
+	}
+	#page {
+		height: 100dvh;
+		width: 100dvw;
 
 		font-size: 3em;
 
@@ -185,6 +184,7 @@
 	}
 	p {
 		text-align: center;
+		margin-top: 0;
 		margin-bottom: 1em;
 	}
 
@@ -197,14 +197,14 @@
 		appearance: none;
 		border: none;
 		outline: none;
-		line-height: 1.5em;
+		line-height: 1.7em;
 
 		color: var(--primary);
 		text-decoration-line: underline;
 		text-decoration-style: wavy;
 		text-decoration-color: var(--primary);
 		text-underline-offset: 5px;
-		text-decoration-thickness: 6px;
+		text-decoration-thickness: 8px;
 
 		font-family: inherit;
 		font-size: inherit;
@@ -226,9 +226,6 @@
 
 		background-color: transparent;
 		color: var(--secondary);
-
-		text-underline-offset: 5px;
-		text-decoration-thickness: 6px;
 	}
 	button:disabled {
 		opacity: 60%;
