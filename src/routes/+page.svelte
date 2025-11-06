@@ -1,5 +1,4 @@
 <script lang="ts">
-	let dialogElement: HTMLDialogElement | null = $state(null);
 	let numbersToGenInput = $state("1");
 	let incl = $state("including");
 	let withRep = $state("without replacement");
@@ -53,8 +52,6 @@
 	}
 
 	function generate() {
-		results.length = 0;
-
 		const actualMin = incl === "including" ? min : min + 1;
 		const actualMax = incl === "including" ? max : max - 1;
 		const span = actualMax - actualMin + 1;
@@ -70,24 +67,20 @@
 
 			results.push(result);
 		}
-		dialogElement?.showModal();
 	}
 </script>
 
 <div id="page">
-	<dialog bind:this={dialogElement}>
+	{#if results.length > 0}
 		<div id="dialog-contents">
 			<div id="results-container">
 				{#each results as result}
 					<p>{result}</p>
 				{/each}
 			</div>
-
-			<button onclick={() => dialogElement?.close()}> Return </button>
 		</div>
-	</dialog>
-
-	<div id="generator">
+		<button onclick={() => (results.length = 0)}> Return </button>
+	{:else}
 		<p>
 			Generate
 			<br />
@@ -133,14 +126,13 @@
 				<option value="not including">not including</option>
 			</select>
 		</p>
-
 		<button
 			onclick={generate}
 			{disabled}
 		>
 			Generate
 		</button>
-	</div>
+	{/if}
 </div>
 
 <style>
