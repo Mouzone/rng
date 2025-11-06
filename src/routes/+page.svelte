@@ -212,33 +212,20 @@
 	}
 
 	button {
-		background-color: var(--primary);
-		color: var(--light-text);
-		box-shadow: var(--shadow);
+		appearance: none;
 		border: none;
-		outline: none;
-		border-radius: 30px;
-		padding: 0.5em;
-	}
 
-	button:focus-visible,
-	input:focus-visible,
-	select:focus-visible {
-		outline: 3px solid var(--secondary);
-		outline-offset: 3px;
+		background-color: transparent;
+		color: var(--primary);
 	}
-
+	button:disabled {
+		opacity: 60%;
+	}
 	button:hover {
-		background-color: var(--secondary);
-		color: var(--text);
+		color: var(--secondary);
 	}
-
-	button:disabled,
-	button:disabled:hover {
-		background-color: var(--primary);
-		color: var(--light-text);
-		opacity: 0.6;
-		cursor: not-allowed;
+	button:hover:disabled {
+		color: var(--primary);
 	}
 
 	dialog {
