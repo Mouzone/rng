@@ -169,11 +169,6 @@
 		align-items: center;
 	}
 
-	#generator {
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-	}
 	p {
 		text-align: center;
 		margin-top: 0;
@@ -227,21 +222,6 @@
 	}
 	button:hover:disabled {
 		color: var(--secondary);
-	}
-
-	dialog {
-		padding: 0.5em;
-		width: 70%;
-		border: none;
-		border-radius: 30px;
-		box-shadow: var(--shadow);
-		background-color: var(--bg);
-		color: var(--text);
-	}
-
-	dialog::backdrop {
-		background-color: rgba(0, 0, 0, 0.4);
-		backdrop-filter: blur(2px);
 	}
 
 	#dialog-contents {
