@@ -169,7 +169,7 @@
 		height: 100dvh;
 		width: 100dvw;
 
-		font-size: 2.5em;
+		font-size: 3em;
 
 		display: flex;
 		flex-direction: column;
@@ -177,7 +177,7 @@
 	}
 
 	#statement {
-		padding-top: 2em;
+		padding-top: 1em;
 		text-align: center;
 		margin-top: 0;
 	}
@@ -191,7 +191,7 @@
 		appearance: none;
 		border: none;
 		outline: none;
-		line-height: 1.7em;
+		line-height: 1.5em;
 
 		color: var(--primary);
 		text-decoration-line: underline;
@@ -216,7 +216,7 @@
 
 	button {
 		position: absolute;
-		bottom: 2em;
+		bottom: 1.5em;
 
 		appearance: none;
 		border: none;
@@ -235,7 +235,7 @@
 	}
 
 	#results-container {
-		height: 50dvh;
+		height: 45dvh;
 
 		justify-self: center;
 
@@ -249,7 +249,7 @@
 	}
 
 	h1 {
-		margin-bottom: 0.5em;
+		margin-bottom: 0.3em;
 		color: var(--primary);
 	}
 	.result {
