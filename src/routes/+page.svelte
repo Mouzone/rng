@@ -266,4 +266,25 @@
 		align-items: center;
 		justify-content: center;
 	}
+
+	@media (max-width: 640px) {
+		#page {
+			font-size: 2.6em;
+		}
+		input,
+		select {
+			line-height: 1.5em;
+
+			text-underline-offset: 8px;
+			text-decoration-thickness: 5px;
+		}
+
+		select {
+			text-align: center;
+		}
+		#left,
+		#right {
+			width: 30%;
+		}
+	}
 </style>
