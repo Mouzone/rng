@@ -79,7 +79,6 @@
 				{/each}
 			</div>
 		</div>
-		<button onclick={() => (results.length = 0)}> Return </button>
 	{:else}
 		<p>
 			Generate
@@ -126,13 +125,23 @@
 				<option value="not including">not including</option>
 			</select>
 		</p>
-		<button
-			onclick={generate}
-			{disabled}
-		>
-			Generate
-		</button>
 	{/if}
+	<button
+		onclick={() => {
+			if (results.length === 0) {
+				generate();
+			} else {
+				results.length = 0;
+			}
+		}}
+		{disabled}
+	>
+		{#if results.length === 0}
+			Generate
+		{:else}
+			Return
+		{/if}
+	</button>
 </div>
 
 <style>
