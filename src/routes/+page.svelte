@@ -72,15 +72,14 @@
 
 <div id="page">
 	{#if results.length > 0}
-		<div id="dialog-contents">
-			<div id="results-container">
-				{#each results as result}
-					<p>{result}</p>
-				{/each}
-			</div>
+		<h1>Results:</h1>
+		<div id="results-container">
+			{#each results as result}
+				<p class="result">{result}</p>
+			{/each}
 		</div>
 	{:else}
-		<p>
+		<p id="statement">
 			Generate
 			<br />
 
@@ -170,18 +169,17 @@
 		height: 100dvh;
 		width: 100dvw;
 
-		font-size: 3em;
+		font-size: 2.5em;
 
 		display: flex;
 		flex-direction: column;
-		justify-content: center;
 		align-items: center;
 	}
 
-	p {
+	#statement {
+		padding-top: 2em;
 		text-align: center;
 		margin-top: 0;
-		margin-bottom: 1em;
 	}
 
 	input,
@@ -200,7 +198,7 @@
 		text-decoration-style: wavy;
 		text-decoration-color: var(--primary);
 		text-underline-offset: 5px;
-		text-decoration-thickness: 8px;
+		text-decoration-thickness: 6px;
 
 		font-family: inherit;
 		font-size: inherit;
@@ -217,6 +215,9 @@
 	}
 
 	button {
+		position: absolute;
+		bottom: 2em;
+
 		appearance: none;
 		border: none;
 
@@ -233,21 +234,28 @@
 		color: var(--secondary);
 	}
 
-	#dialog-contents {
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-	}
-
 	#results-container {
+		height: 50dvh;
+
+		justify-self: center;
+
 		width: 90%;
 		display: flex;
+		flex-wrap: wrap;
 		gap: 0.5em;
 		overflow-x: auto;
 		align-items: center;
-		justify-content: center;
+		justify-content: space-around;
 	}
 
+	h1 {
+		margin-bottom: 0.5em;
+		color: var(--primary);
+	}
+	.result {
+		margin: 0;
+		padding: 0;
+	}
 	@media (max-width: 640px) {
 		#page {
 			font-size: 2.6em;
