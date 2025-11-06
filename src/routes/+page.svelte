@@ -111,13 +111,8 @@
 				<option value="without replacement">without replacement</option>
 			</select>
 			<br />
-			between and
-			<br />
 
-			<select bind:value={incl}>
-				<option value="including">including</option>
-				<option value="not including">not including</option>
-			</select>
+			between
 			<br />
 
 			<input
@@ -133,6 +128,12 @@
 				bind:value={maxInput}
 				oninput={(e) => (maxInput = handleInput(e))}
 			/>
+			<br />
+
+			<select bind:value={incl}>
+				<option value="including">including</option>
+				<option value="not including">not including</option>
+			</select>
 		</p>
 
 		<button
