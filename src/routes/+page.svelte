@@ -157,6 +157,7 @@
 		--text: #7b3f00;
 		--primary: #b7410e;
 		--secondary: #da9100;
+		--tertiary: #568203;
 		--light-text: #f5f5dc;
 		--shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.08),
 			0 6px 20px 0 rgba(0, 0, 0, 0.06);
@@ -195,10 +196,17 @@
 		appearance: none;
 		border: none;
 		outline: none;
+		line-height: 1.5em;
+
+		color: var(--primary);
+		text-decoration-line: underline;
+		text-decoration-style: wavy;
+		text-decoration-color: var(--primary);
+		text-underline-offset: 5px;
+		text-decoration-thickness: 6px;
 
 		font-family: inherit;
 		font-size: inherit;
-		color: inherit;
 	}
 
 	#left {
