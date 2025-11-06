@@ -185,7 +185,7 @@
 	}
 	p {
 		text-align: center;
-		margin-bottom: 0.5em;
+		margin-bottom: 1em;
 	}
 
 	input,
@@ -225,10 +225,7 @@
 		border: none;
 
 		background-color: transparent;
-		color: var(--primary);
-		text-decoration-line: underline;
-		text-decoration-style: wavy;
-		text-decoration-color: var(--primary);
+		color: var(--secondary);
 
 		text-underline-offset: 5px;
 		text-decoration-thickness: 6px;
@@ -237,12 +234,10 @@
 		opacity: 60%;
 	}
 	button:hover {
-		color: var(--secondary);
-		text-decoration-color: var(--secondary);
+		color: var(--tertiary);
 	}
 	button:hover:disabled {
-		color: var(--primary);
-		text-decoration-color: var(--primary);
+		color: var(--secondary);
 	}
 
 	dialog {
