@@ -73,6 +73,11 @@
 <div id="page">
 	{#if results.length > 0}
 		<h1>Results:</h1>
+		<button
+			id="copy-button"
+			onclick={() => navigator.clipboard.writeText(results.join(", "))}
+			>Copy</button
+		>
 		<div id="results-container">
 			{#each results as result}
 				<p class="result">{result}</p>
@@ -262,6 +267,13 @@
 	.result {
 		margin: 0;
 		padding: 0;
+	}
+	#copy-button {
+		position: absolute;
+		top: -7.5em;
+		right: 2.5em;
+		font-size: 0.5em;
+		transform: rotate(30deg);
 	}
 	@media (max-width: 640px) {
 		#page {
