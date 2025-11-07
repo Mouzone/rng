@@ -236,15 +236,16 @@
 
 	#results-container {
 		height: 40dvh;
+		width: 90%;
 
 		justify-self: center;
+		overflow-x: auto;
 
-		width: 90%;
 		display: grid;
 		grid-template-columns: repeat(auto-fit, minmax(1em, 2em));
-		place-content: center;
 		gap: 1rem;
-		overflow-x: auto;
+
+		place-content: center;
 		justify-items: center;
 	}
 
