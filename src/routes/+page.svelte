@@ -1,4 +1,7 @@
 <script lang="ts">
+	import { cubicIn, cubicOut } from "svelte/easing";
+	import { slide } from "svelte/transition";
+
 	let numbersToGenInput = $state("1");
 	let incl = $state("including");
 	let withRep = $state("without replacement");
@@ -72,7 +75,11 @@
 
 <div id="page">
 	{#if results.length > 0}
-		<div id="results-screen">
+		<div
+			id="results-screen"
+			in:slide={{ duration: 700, easing: cubicOut }}
+			out:slide={{ duration: 700, easing: cubicIn }}
+		>
 			<h1>Results:</h1>
 			<button
 				id="copy-button"
@@ -85,70 +92,69 @@
 					<p class="result">{result}</p>
 				{/each}
 			</div>
+			<button onclick={() => (results.length = 0)}> Return </button>
 		</div>
 	{:else}
-		<p id="statement">
-			Generate
-			<br />
+		<div
+			id="generator-screen"
+			in:slide={{ duration: 700, easing: cubicOut }}
+			out:slide={{ duration: 700, easing: cubicIn }}
+		>
+			<p id="statement">
+				Generate
+				<br />
 
-			<input
-				inputmode="numeric"
-				bind:value={numbersToGenInput}
-				oninput={(e) => (numbersToGenInput = handleInput(e))}
-			/>
-			<br />
-			{#if numbersToGen === 1}
-				number
-			{:else}
-				numbers
-			{/if}
-			<br />
-			<select bind:value={withRep}>
-				<option value="with replacement">with replacement</option>
-				<option value="without replacement">without replacement</option>
-			</select>
-			<br />
+				<input
+					inputmode="numeric"
+					bind:value={numbersToGenInput}
+					oninput={(e) => (numbersToGenInput = handleInput(e))}
+				/>
+				<br />
+				{#if numbersToGen === 1}
+					number
+				{:else}
+					numbers
+				{/if}
+				<br />
+				<select bind:value={withRep}>
+					<option value="with replacement">with replacement</option>
+					<option value="without replacement"
+						>without replacement</option
+					>
+				</select>
+				<br />
 
-			between
-			<br />
+				between
+				<br />
 
-			<input
-				inputmode="numeric"
-				id="left"
-				bind:value={minInput}
-				oninput={(e) => (minInput = handleInput(e))}
-			/>
-			and
-			<input
-				inputmode="numeric"
-				id="right"
-				bind:value={maxInput}
-				oninput={(e) => (maxInput = handleInput(e))}
-			/>
-			<br />
+				<input
+					inputmode="numeric"
+					id="left"
+					bind:value={minInput}
+					oninput={(e) => (minInput = handleInput(e))}
+				/>
+				and
+				<input
+					inputmode="numeric"
+					id="right"
+					bind:value={maxInput}
+					oninput={(e) => (maxInput = handleInput(e))}
+				/>
+				<br />
 
-			<select bind:value={incl}>
-				<option value="including">including</option>
-				<option value="not including">not including</option>
-			</select>
-		</p>
+				<select bind:value={incl}>
+					<option value="including">including</option>
+					<option value="not including">not including</option>
+				</select>
+			</p>
+			<button
+				onclick={() => generate()}
+				{disabled}
+			>
+				Generate
+			</button>
+		</div>
 	{/if}
-	<button
-		onclick={() => {
-			if (results.length === 0) {
-				generate();
-			} else {
-				results.length = 0;
-			}
-		}}
-		{disabled}
-	>
-		{#if results.length === 0}
-			Generate
-		{:else}
-			Return
-		{/if}
-	</button>
 </div>
 
 <style>
@@ -230,7 +236,7 @@
 
 	button {
 		position: absolute;
-		bottom: 1.5em;
+		bottom: -1em;
 
 		appearance: none;
 		border: none;
@@ -247,8 +253,16 @@
 	button:hover:disabled {
 		color: var(--secondary);
 	}
+	#generator-screen {
+		position: relative;
+		width: 100%;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
 	#results-screen {
-		width: 90%;
+		width: 100%;
+		position: relative;
 		display: flex;
 		flex-direction: column;
 		align-items: center;
@@ -268,7 +282,7 @@
 	}
 
 	h1 {
-		margin-bottom: 0.2em;
+		margin-bottom: -0.1em;
 		color: var(--primary);
 	}
 	.result {
@@ -276,9 +290,9 @@
 		padding: 0;
 	}
 	#copy-button {
-		position: absolute;
-		top: -9.5em;
-		left: 0.5em;
+		position: relative;
+		top: 0.5em;
+		left: -13em;
 		font-size: 0.5em;
 		transform: rotate(-45deg);
 	}
