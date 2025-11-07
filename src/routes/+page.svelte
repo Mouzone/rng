@@ -277,8 +277,8 @@
 	}
 	#copy-button {
 		position: absolute;
-		top: -9em;
-		right: 2em;
+		top: -9.5em;
+		right: 1.5em;
 		font-size: 0.5em;
 		transform: rotate(30deg);
 	}
