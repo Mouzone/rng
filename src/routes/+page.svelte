@@ -187,7 +187,7 @@
 		padding: 0;
 		margin: 0;
 		background-color: transparent;
-		text-align: center;
+
 		appearance: none;
 		border: none;
 		outline: none;
@@ -203,7 +203,13 @@
 		font-family: inherit;
 		font-size: inherit;
 	}
-
+	input {
+		text-align: center;
+	}
+	select {
+		text-align: left;
+		text-align-last: center;
+	}
 	#left {
 		text-align: right;
 		width: 40%;
@@ -267,9 +273,6 @@
 
 			text-underline-offset: 8px;
 			text-decoration-thickness: 5px;
-		}
-		select {
-			text-align: center;
 		}
 		#left,
 		#right {
