@@ -245,6 +245,7 @@
 		place-content: center;
 		gap: 1rem;
 		overflow-x: auto;
+		justify-items: center;
 	}
 
 	h1 {
