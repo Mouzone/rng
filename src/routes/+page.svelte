@@ -235,21 +235,20 @@
 	}
 
 	#results-container {
-		height: 45dvh;
+		height: 40dvh;
 
 		justify-self: center;
 
 		width: 90%;
-		display: flex;
-		flex-wrap: wrap;
-		gap: 0.5em;
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(1em, 2em));
+		place-content: center;
+		gap: 1rem;
 		overflow-x: auto;
-		align-items: center;
-		justify-content: space-around;
 	}
 
 	h1 {
-		margin-bottom: 0.3em;
+		margin-bottom: 0.5em;
 		color: var(--primary);
 	}
 	.result {
