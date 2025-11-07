@@ -72,16 +72,19 @@
 
 <div id="page">
 	{#if results.length > 0}
-		<h1>Results:</h1>
-		<button
-			id="copy-button"
-			onclick={() => navigator.clipboard.writeText(results.join(", "))}
-			>Copy</button
-		>
-		<div id="results-container">
-			{#each results as result}
-				<p class="result">{result}</p>
-			{/each}
+		<div id="results-screen">
+			<h1>Results:</h1>
+			<button
+				id="copy-button"
+				onclick={() =>
+					navigator.clipboard.writeText(results.join(", "))}
+				>Copy</button
+			>
+			<div id="results-container">
+				{#each results as result}
+					<p class="result">{result}</p>
+				{/each}
+			</div>
 		</div>
 	{:else}
 		<p id="statement">
@@ -244,24 +247,28 @@
 	button:hover:disabled {
 		color: var(--secondary);
 	}
-
-	#results-container {
-		height: 40dvh;
+	#results-screen {
 		width: 90%;
-
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
+	#results-container {
+		width: 100%;
+		height: 50dvh;
 		justify-self: center;
 		overflow-x: auto;
 
 		display: grid;
 		grid-template-columns: repeat(auto-fit, minmax(1em, 2em));
-		gap: 1rem;
+		gap: 2rem;
 
 		place-content: center;
 		justify-items: center;
 	}
 
 	h1 {
-		margin-bottom: 0.5em;
+		margin-bottom: 0.2em;
 		color: var(--primary);
 	}
 	.result {
@@ -270,8 +277,8 @@
 	}
 	#copy-button {
 		position: absolute;
-		top: -7.5em;
-		right: 2.5em;
+		top: -9em;
+		right: 2em;
 		font-size: 0.5em;
 		transform: rotate(30deg);
 	}
