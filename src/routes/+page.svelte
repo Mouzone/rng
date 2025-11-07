@@ -286,6 +286,9 @@
 		#page {
 			font-size: 2.6em;
 		}
+		#statement {
+			margin-top: 1.5em;
+		}
 		input,
 		select {
 			line-height: 1.5em;
