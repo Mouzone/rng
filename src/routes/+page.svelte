@@ -268,13 +268,18 @@
 			text-underline-offset: 8px;
 			text-decoration-thickness: 5px;
 		}
-
 		select {
 			text-align: center;
 		}
 		#left,
 		#right {
 			width: 30%;
+		}
+		#results-container {
+			height: 45dvh;
+		}
+		h1 {
+			margin-bottom: 0.7em;
 		}
 	}
 </style>
