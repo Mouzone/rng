@@ -278,9 +278,9 @@
 	#copy-button {
 		position: absolute;
 		top: -9.5em;
-		right: 1.5em;
+		left: 0.5em;
 		font-size: 0.5em;
-		transform: rotate(30deg);
+		transform: rotate(-45deg);
 	}
 	@media (max-width: 640px) {
 		#page {
