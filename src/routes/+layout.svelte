@@ -1,6 +1,5 @@
 <script lang="ts">
 	import "normalize.css";
-	import favicon from "/icons/favicon.ico";
 	import { onMount } from "svelte";
 
 	async function detectSWUpdate() {
@@ -24,10 +23,7 @@
 </script>
 
 <svelte:head>
-	<link
-		rel="icon"
-		href={favicon}
-	/>
+	<title>Random Number Generator</title>
 </svelte:head>
 
 {@render children()}
