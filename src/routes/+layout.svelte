@@ -1,6 +1,6 @@
 <script lang="ts">
 	import "normalize.css";
-	import favicon from "$lib/assets/favicon.svg";
+	import favicon from "/icons/favicon.ico";
 	import { onMount } from "svelte";
 
 	async function detectSWUpdate() {
