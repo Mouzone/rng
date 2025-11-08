@@ -1,0 +1,26 @@
+{
+	"name": "Random Number Generator",
+	"short_name": "RNG",
+	"start_url": "/",
+	"display": "standalone",
+	"background_color": "#f5f5dc",
+	"theme-color": "#f5f5dc",
+	"description": "Generate number(s) with different settings",
+	"icons": [
+		{
+			"src": "icons/pwa-64x64.png",
+			"type": "image/png",
+			"sizes": "64x64"
+		},
+		{
+			"src": "icons/pwa-192x192.png",
+			"type": "image/png",
+			"sizes": "192x192"
+		},
+		{
+			"src": "icons/pwa-512x512.png",
+			"type": "image/png",
+			"sizes": "512x512"
+		}
+	]
+}
