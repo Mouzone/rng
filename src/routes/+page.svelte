@@ -81,15 +81,18 @@
 			out:slide={{ duration: 700, easing: cubicIn }}
 		>
 			<h1>Results:</h1>
-			<button
-				id="copy-button"
-				onclick={() =>
-					navigator.clipboard.writeText(results.join(", "))}
-				>Copy</button
-			>
+
 			<div id="results-container">
+				<button
+					id="copy-button"
+					onclick={() =>
+						navigator.clipboard.writeText(results.join(", "))}
+					>Copy</button
+				>
 				{#each results as result}
-					<p class="result">{result}</p>
+					<p class="result">
+						{result}
+					</p>
 				{/each}
 			</div>
 			<button
@@ -264,10 +267,10 @@
 		justify-content: center;
 	}
 	#copy-button {
-		position: relative;
+		position: absolute;
 		font-size: 0.5em;
-		left: -12em;
-		top: 0em;
+		left: 2.5em;
+		top: 9.8em;
 		transform: rotate(-45deg);
 	}
 	#results-container {
