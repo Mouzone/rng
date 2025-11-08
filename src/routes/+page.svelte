@@ -92,7 +92,12 @@
 					<p class="result">{result}</p>
 				{/each}
 			</div>
-			<button onclick={() => (results.length = 0)}> Return </button>
+			<button
+				class="main-action-button"
+				onclick={() => (results.length = 0)}
+			>
+				Return
+			</button>
 		</div>
 	{:else}
 		<div
@@ -148,6 +153,7 @@
 				</select>
 			</p>
 			<button
+				class="main-action-button"
 				onclick={() => generate()}
 				{disabled}
 			>
@@ -182,143 +188,62 @@
 	#page {
 		height: 100dvh;
 		width: 100dvw;
+		display: flex;
+		align-items: center;
+		justify-content: center;
 
 		font-size: 3em;
-
+	}
+	#generator-screen {
 		display: flex;
 		flex-direction: column;
 		align-items: center;
 	}
-
 	#statement {
-		padding-top: 1em;
+		margin: 0;
+		padding: 0;
 		text-align: center;
-		margin-top: 0;
 	}
-
 	input,
 	select {
-		padding: 0;
-		margin: 0;
-		background-color: transparent;
+		color: var(--primary);
 
 		appearance: none;
 		border: none;
-		outline: none;
-		line-height: 1.5em;
+		background-color: transparent;
 
-		color: var(--primary);
+		line-height: 1.8em;
 		text-decoration-line: underline;
 		text-decoration-style: wavy;
-		text-decoration-color: var(--primary);
-		text-underline-offset: 5px;
-		text-decoration-thickness: 6px;
-
-		font-family: inherit;
-		font-size: inherit;
+		text-decoration-thickness: 0.1em;
+		text-underline-offset: 0.3em;
+	}
+	select {
+		text-align: center;
 	}
 	input {
 		text-align: center;
+		width: 30%;
 	}
-	select {
-		text-align: left;
-		text-align-last: center;
-	}
-	#left {
+	input#left {
 		text-align: right;
-		width: 40%;
 	}
-
-	#right {
+	input#right {
 		text-align: left;
-		width: 40%;
 	}
-
 	button {
-		position: absolute;
-		bottom: -1em;
-
 		appearance: none;
 		border: none;
-
 		background-color: transparent;
+
 		color: var(--secondary);
-	}
-	button:disabled {
-		opacity: 60%;
 	}
 	button:hover {
 		color: var(--tertiary);
 	}
+	button:disabled,
 	button:hover:disabled {
+		opacity: 60%;
 		color: var(--secondary);
-	}
-	#generator-screen {
-		position: relative;
-		width: 100%;
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-	}
-	#results-screen {
-		width: 100%;
-		position: relative;
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-	}
-	#results-container {
-		width: 100%;
-		height: 50dvh;
-		justify-self: center;
-		overflow-x: auto;
-
-		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(1em, 2em));
-		gap: 2rem;
-
-		place-content: center;
-		justify-items: center;
-	}
-
-	h1 {
-		margin-bottom: -0.1em;
-		color: var(--primary);
-	}
-	.result {
-		margin: 0;
-		padding: 0;
-	}
-	#copy-button {
-		position: relative;
-		top: 0.5em;
-		left: -13em;
-		font-size: 0.5em;
-		transform: rotate(-45deg);
-	}
-	@media (max-width: 640px) {
-		#page {
-			font-size: 2.6em;
-		}
-		#statement {
-			margin-top: 1.5em;
-		}
-		input,
-		select {
-			line-height: 1.5em;
-
-			text-underline-offset: 8px;
-			text-decoration-thickness: 5px;
-		}
-		#left,
-		#right {
-			width: 30%;
-		}
-		#results-container {
-			height: 45dvh;
-		}
-		h1 {
-			margin-bottom: 0.7em;
-		}
 	}
 </style>
