@@ -189,6 +189,7 @@
 		height: 100dvh;
 		width: 100dvw;
 		display: flex;
+		flex-direction: column;
 		align-items: center;
 		justify-content: center;
 
@@ -214,7 +215,7 @@
 	/* Generator Screen */
 
 	#generator-screen {
-		width: 100%;
+		width: 100%dvw;
 
 		display: flex;
 		flex-direction: column;
@@ -254,31 +255,37 @@
 	}
 
 	/* Results Screen */
+
 	#results-screen {
-		width: 100%;
+		width: 100dvw;
 		display: flex;
 		flex-direction: column;
 		align-items: center;
 		justify-content: center;
 	}
 	#copy-button {
-		position: absolute;
+		position: relative;
 		font-size: 0.5em;
-		left: 1.5em;
-		top: 10em;
+		left: -12em;
+		top: 0em;
 		transform: rotate(-45deg);
 	}
 	#results-container {
-		height: 50dvh;
+		margin: 0;
+		padding: 0;
+		height: 45dvh;
 		width: 80%;
 		display: grid;
-		grid-template-columns: repeat(auto-fit, 0.5em);
-		justify-items: center;
-		gap: 1.5em;
+		grid-template-columns: repeat(auto-fit, minmax(2em, 1fr));
+		place-items: center;
+		gap: 0.5em;
 		overflow-y: scroll;
 	}
 	.result {
 		margin: 0;
 		padding: 0;
+	}
+	h1 {
+		margin-bottom: 0;
 	}
 </style>
