@@ -194,7 +194,28 @@
 
 		font-size: 3em;
 	}
+
+	button {
+		appearance: none;
+		border: none;
+		background-color: transparent;
+
+		color: var(--secondary);
+	}
+	button:hover {
+		color: var(--tertiary);
+	}
+	button:disabled,
+	button:hover:disabled {
+		opacity: 60%;
+		color: var(--secondary);
+	}
+
+	/* Generator Screen */
+
 	#generator-screen {
+		width: 100%;
+
 		display: flex;
 		flex-direction: column;
 		align-items: center;
@@ -231,19 +252,33 @@
 	input#right {
 		text-align: left;
 	}
-	button {
-		appearance: none;
-		border: none;
-		background-color: transparent;
 
-		color: var(--secondary);
+	/* Results Screen */
+	#results-screen {
+		width: 100%;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
 	}
-	button:hover {
-		color: var(--tertiary);
+	#copy-button {
+		position: absolute;
+		font-size: 0.5em;
+		left: 1.5em;
+		top: 10em;
+		transform: rotate(-45deg);
 	}
-	button:disabled,
-	button:hover:disabled {
-		opacity: 60%;
-		color: var(--secondary);
+	#results-container {
+		height: 50dvh;
+		width: 80%;
+		display: grid;
+		grid-template-columns: repeat(auto-fit, 0.5em);
+		justify-items: center;
+		gap: 1.5em;
+		overflow-y: scroll;
+	}
+	.result {
+		margin: 0;
+		padding: 0;
 	}
 </style>
