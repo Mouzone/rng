@@ -260,6 +260,7 @@
 	/* Results Screen */
 
 	#results-screen {
+		position: relative;
 		width: 100dvw;
 		display: flex;
 		flex-direction: column;
@@ -269,8 +270,8 @@
 	#copy-button {
 		position: absolute;
 		font-size: 0.5em;
-		right: 4em;
-		top: 8em;
+		right: 3.5em;
+		top: 5.5em;
 	}
 	#results-container {
 		margin: 0;
