@@ -269,9 +269,8 @@
 	#copy-button {
 		position: absolute;
 		font-size: 0.5em;
-		left: 2.5em;
-		top: 9.8em;
-		transform: rotate(-45deg);
+		right: 4em;
+		top: 8em;
 	}
 	#results-container {
 		margin: 0;
