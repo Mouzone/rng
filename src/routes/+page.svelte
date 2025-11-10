@@ -1,20 +1,61 @@
 <script lang="ts">
 	import { cubicIn, cubicOut } from "svelte/easing";
-	import { slide } from "svelte/transition";
+	// --- CHANGED ---
+	// Removed the 'slide' import
+	// import { slide } from "svelte/transition";
+
+	// --- ADDED ---
+	// Custom wipe-in transition (from left)
+	function wipeIn(
+		node: Element,
+		{
+			duration,
+			easing,
+		}: { duration: number; easing: (t: number) => number }
+	) {
+		return {
+			duration,
+			easing,
+			css: (t: number) => {
+				// t goes from 0 to 1
+				// 0: clip-path: inset(0 0 0 100%) (hidden)
+				// 1: clip-path: inset(0 0 0 0%) (visible)
+				return `clip-path: inset(0 0 0 ${100 - t * 100}%)`;
+			},
+		};
+	}
+
+	// Custom wipe-out transition (to right)
+	function wipeOut(
+		node: Element,
+		{
+			duration,
+			easing,
+		}: { duration: number; easing: (t: number) => number }
+	) {
+		return {
+			duration,
+			easing,
+			css: (t: number) => {
+				// t goes from 1 to 0
+				// 1: clip-path: inset(0 0% 0 0) (visible)
+				// 0: clip-path: inset(0 100% 0 0) (hidden)
+				return `clip-path: inset(0 ${100 - t * 100}% 0 0)`;
+			},
+		};
+	}
+	// --- END ADDED ---
 
 	let numbersToGenInput = $state("1");
 	let incl = $state("including");
 	let withRep = $state("without replacement");
 	let minInput = $state("0");
 	let maxInput = $state("0");
-
 	let numbersToGen = $derived(Number(numbersToGenInput) || 1);
 	let min = $derived(Number(minInput) || 0);
 	let max = $derived(Number(maxInput) || 0);
-
 	let effMin = $derived(incl === "including" ? min : min + 1);
 	let effMax = $derived(incl === "including" ? max : max - 1);
-
 	let rangeSize = $derived(Math.max(0, effMax - effMin + 1));
 
 	let disabled = $derived(
@@ -34,7 +75,6 @@
 			return false;
 		})()
 	);
-
 	let results: number[] = $state([]);
 
 	function handleInput(e: Event) {
@@ -58,10 +98,8 @@
 		const actualMin = incl === "including" ? min : min + 1;
 		const actualMax = incl === "including" ? max : max - 1;
 		const span = actualMax - actualMin + 1;
-
 		while (results.length < numbersToGen) {
 			let result = Math.floor(Math.random() * span) + actualMin;
-
 			if (withRep === "without replacement") {
 				while (results.includes(result)) {
 					result = Math.floor(Math.random() * span) + actualMin;
@@ -77,8 +115,8 @@
 	{#if results.length > 0}
 		<div
 			id="results-screen"
-			in:slide={{ duration: 700, easing: cubicOut }}
-			out:slide={{ duration: 700, easing: cubicIn }}
+			in:wipeIn={{ duration: 700, easing: cubicOut }}
+			out:wipeOut={{ duration: 700, easing: cubicIn }}
 		>
 			<h1>Results:</h1>
 
@@ -105,8 +143,8 @@
 	{:else}
 		<div
 			id="generator-screen"
-			in:slide={{ duration: 700, easing: cubicOut }}
-			out:slide={{ duration: 700, easing: cubicIn }}
+			in:wipeIn={{ duration: 700, easing: cubicOut }}
+			out:wipeOut={{ duration: 700, easing: cubicIn }}
 		>
 			<p id="statement">
 				Generate
@@ -197,6 +235,10 @@
 		justify-content: center;
 
 		font-size: 3em;
+
+		/* --- ADDED --- */
+		/* This is required to stack the two screens for the transition */
+		position: relative;
 	}
 
 	button {
@@ -225,6 +267,10 @@
 		flex-direction: column;
 		align-items: center;
 		justify-content: space-evenly;
+
+		/* --- ADDED --- */
+		/* This is required for the out: transition to work */
+		position: absolute;
 	}
 	#statement {
 		margin: 0;
@@ -243,7 +289,6 @@
 		background-color: transparent;
 
 		text-align: center;
-
 		line-height: 1.8em;
 		text-decoration-line: underline;
 		text-decoration-style: wavy;
@@ -274,6 +319,10 @@
 		flex-direction: column;
 		align-items: center;
 		justify-content: space-evenly;
+
+		/* --- ADDED --- */
+		/* This is required for the out: transition to work */
+		position: absolute;
 	}
 	#copy-button {
 		position: absolute;
