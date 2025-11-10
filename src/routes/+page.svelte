@@ -218,11 +218,13 @@
 	/* Generator Screen */
 
 	#generator-screen {
-		width: 100%dvw;
+		height: 100dvh;
+		width: 100dvw;
 
 		display: flex;
 		flex-direction: column;
 		align-items: center;
+		justify-content: space-evenly;
 	}
 	#statement {
 		margin: 0;
@@ -266,22 +268,24 @@
 
 	#results-screen {
 		position: relative;
+		height: 100dvh;
 		width: 100dvw;
 		display: flex;
 		flex-direction: column;
 		align-items: center;
-		justify-content: center;
+		justify-content: space-evenly;
 	}
 	#copy-button {
 		position: absolute;
 		font-size: 0.5em;
-		right: 3.5em;
-		top: 5.5em;
+		right: 2em;
+		top: 7em;
+		transform: rotate(45deg);
 	}
 	#results-container {
 		margin: 0;
 		padding: 0;
-		height: 45dvh;
+		height: 55dvh;
 		width: 80%;
 		display: grid;
 		grid-template-columns: repeat(auto-fit, minmax(2em, 1fr));
@@ -294,7 +298,7 @@
 		padding: 0;
 	}
 	h1 {
-		margin-bottom: 0;
+		margin: 0;
 	}
 
 	@media (max-width: 640px) {
