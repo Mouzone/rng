@@ -1,11 +1,6 @@
 <script lang="ts">
 	import { cubicIn, cubicOut } from "svelte/easing";
-	// --- CHANGED ---
-	// Removed the 'slide' import
-	// import { slide } from "svelte/transition";
 
-	// --- ADDED ---
-	// Custom wipe-in transition (from left)
 	function wipeIn(
 		node: Element,
 		{
@@ -25,7 +20,6 @@
 		};
 	}
 
-	// Custom wipe-out transition (to right)
 	function wipeOut(
 		node: Element,
 		{
@@ -44,7 +38,6 @@
 			},
 		};
 	}
-	// --- END ADDED ---
 
 	let numbersToGenInput = $state("1");
 	let incl = $state("including");
@@ -267,9 +260,6 @@
 		flex-direction: column;
 		align-items: center;
 		justify-content: space-evenly;
-
-		/* --- ADDED --- */
-		/* This is required for the out: transition to work */
 		position: absolute;
 	}
 	#statement {
@@ -320,22 +310,20 @@
 		align-items: center;
 		justify-content: space-evenly;
 
-		/* --- ADDED --- */
-		/* This is required for the out: transition to work */
 		position: absolute;
 	}
 	#copy-button {
 		position: absolute;
 		font-size: 0.5em;
-		right: 2em;
-		top: 7em;
+		right: 1.25em;
+		top: 6.75em;
 		transform: rotate(45deg);
 	}
 	#results-container {
 		margin: 0;
 		padding: 0;
 		height: 55dvh;
-		width: 80%;
+		width: 90%;
 		display: grid;
 		grid-template-columns: repeat(auto-fit, minmax(2em, 1fr));
 		place-items: center;
@@ -348,11 +336,20 @@
 	}
 	h1 {
 		margin: 0;
+		padding: 0;
 	}
 
 	@media (max-width: 640px) {
 		#page {
 			font-size: 2.5em;
+		}
+		#copy-button {
+			top: 10.75em;
+			right: 0.5em;
+		}
+		#results-container {
+			height: 40dvh;
+			grid-template-columns: repeat(auto-fit, minmax(2em, 1fr));
 		}
 	}
 </style>
