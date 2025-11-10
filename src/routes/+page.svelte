@@ -69,6 +69,7 @@
 		})()
 	);
 	let results: number[] = $state([]);
+	let isLoading = $state(false);
 
 	function handleInput(e: Event) {
 		const target = e.currentTarget as HTMLInputElement;
@@ -85,6 +86,27 @@
 		}
 
 		return noLeadingZeros;
+	}
+
+	async function startGeneration() {
+		isLoading = true; // Trigger loading screen
+
+		// Wait for transitions and show loader for a bit
+		await new Promise((resolve) => setTimeout(resolve, 1500));
+
+		generate(); // Populate results
+		isLoading = false; // Trigger results screen
+	}
+
+	// --- ADDED: Function to handle return transition ---
+	async function returnToGenerator() {
+		isLoading = true; // Show loading screen
+
+		// Wait for transitions and show loader
+		await new Promise((resolve) => setTimeout(resolve, 1500));
+
+		results.length = 0; // Clear results
+		isLoading = false; // Show generator screen
 	}
 
 	function generate() {
@@ -105,7 +127,21 @@
 </script>
 
 <div id="page">
-	{#if results.length > 0}
+	{#if isLoading}
+		<div
+			id="loading-screen"
+			in:wipeIn={{ duration: 700, easing: cubicOut }}
+			out:wipeOut={{ duration: 700, easing: cubicIn }}
+		>
+			<div class="funk-loader">
+				<div class="dot"></div>
+				<div class="dot"></div>
+				<div class="dot"></div>
+				<div class="dot"></div>
+			</div>
+			<p class="loading-text">Gettin' Funky...</p>
+		</div>
+	{:else if results.length > 0}
 		<div
 			id="results-screen"
 			in:wipeIn={{ duration: 700, easing: cubicOut }}
@@ -128,7 +164,7 @@
 			</div>
 			<button
 				class="main-action-button"
-				onclick={() => (results.length = 0)}
+				onclick={() => returnToGenerator()}
 			>
 				Return
 			</button>
@@ -182,13 +218,13 @@
 				<br />
 
 				<select bind:value={incl}>
-					<option value="including">including</option>
+					<option value="including">including</option>or
 					<option value="not including">not including</option>
 				</select>
 			</p>
 			<button
 				class="main-action-button"
-				onclick={() => generate()}
+				onclick={() => startGeneration()}
 				{disabled}
 			>
 				Generate
@@ -229,8 +265,6 @@
 
 		font-size: 3em;
 
-		/* --- ADDED --- */
-		/* This is required to stack the two screens for the transition */
 		position: relative;
 	}
 
@@ -299,10 +333,69 @@
 		text-align: left;
 	}
 
-	/* Results Screen */
+	/* --- ADDED: Loading Screen Styles --- */
+	#loading-screen {
+		height: 100dvh;
+		width: 100dvw;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		position: absolute;
+		gap: 2em;
+	}
 
+	.loading-text {
+		font-size: 1.5em; /* Bigger than loader */
+		color: var(--primary);
+		text-transform: uppercase;
+		letter-spacing: 0.1em;
+	}
+
+	/* 70s Funk Loader */
+	.funk-loader {
+		display: flex;
+		gap: 1em;
+	}
+
+	.funk-loader .dot {
+		width: 2rem;
+		height: 2rem;
+		border-radius: 50%;
+		animation: funk-scale 1.4s infinite ease-in-out both;
+	}
+
+	.funk-loader .dot:nth-child(1) {
+		background-color: var(--primary);
+		animation-delay: -0.32s;
+	}
+	.funk-loader .dot:nth-child(2) {
+		background-color: var(--secondary);
+		animation-delay: -0.16s;
+	}
+	.funk-loader .dot:nth-child(3) {
+		background-color: var(--tertiary);
+	}
+	.funk-loader .dot:nth-child(4) {
+		background-color: var(--primary); /* Repeat a color */
+		animation-delay: 0.16s;
+	}
+
+	@keyframes funk-scale {
+		0%,
+		80%,
+		100% {
+			transform: scale(0.8);
+			opacity: 0.5;
+		}
+		40% {
+			transform: scale(1.2);
+			opacity: 1;
+		}
+	}
+
+	/* Results Screen */
 	#results-screen {
-		position: relative;
 		height: 100dvh;
 		width: 100dvw;
 		display: flex;
@@ -315,8 +408,8 @@
 	#copy-button {
 		position: absolute;
 		font-size: 0.5em;
-		right: 1.25em;
-		top: 6.75em;
+		right: 0.75em;
+		top: 7em;
 		transform: rotate(45deg);
 	}
 	#results-container {
