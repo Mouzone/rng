@@ -231,11 +231,16 @@
 	}
 	input,
 	select {
+		margin: 0;
+		padding: 0;
+
 		color: var(--primary);
 
 		appearance: none;
 		border: none;
 		background-color: transparent;
+
+		text-align: center;
 
 		line-height: 1.8em;
 		text-decoration-line: underline;
@@ -243,12 +248,12 @@
 		text-decoration-thickness: 0.1em;
 		text-underline-offset: 0.3em;
 	}
+
 	select {
-		text-align: center;
+		text-align-last: center;
 	}
 	input {
-		text-align: center;
-		width: 30%;
+		width: 25%;
 	}
 	input#left {
 		text-align: right;
@@ -290,5 +295,11 @@
 	}
 	h1 {
 		margin-bottom: 0;
+	}
+
+	@media (max-width: 640px) {
+		#page {
+			font-size: 2.5em;
+		}
 	}
 </style>
