@@ -89,24 +89,21 @@
 	}
 
 	async function startGeneration() {
-		isLoading = true; // Trigger loading screen
+		isLoading = true;
 
-		// Wait for transitions and show loader for a bit
 		await new Promise((resolve) => setTimeout(resolve, 1500));
 
-		generate(); // Populate results
-		isLoading = false; // Trigger results screen
+		generate();
+		isLoading = false;
 	}
 
-	// --- ADDED: Function to handle return transition ---
 	async function returnToGenerator() {
-		isLoading = true; // Show loading screen
+		isLoading = true;
 
-		// Wait for transitions and show loader
 		await new Promise((resolve) => setTimeout(resolve, 1500));
 
-		results.length = 0; // Clear results
-		isLoading = false; // Show generator screen
+		results.length = 0;
+		isLoading = false;
 	}
 
 	function generate() {
@@ -333,7 +330,7 @@
 		text-align: left;
 	}
 
-	/* --- ADDED: Loading Screen Styles --- */
+	/* Loading Screen Styles */
 	#loading-screen {
 		height: 100dvh;
 		width: 100dvw;
@@ -346,13 +343,12 @@
 	}
 
 	.loading-text {
-		font-size: 1.5em; /* Bigger than loader */
+		font-size: 1.5em;
 		color: var(--primary);
 		text-transform: uppercase;
 		letter-spacing: 0.1em;
 	}
 
-	/* 70s Funk Loader */
 	.funk-loader {
 		display: flex;
 		gap: 1em;
