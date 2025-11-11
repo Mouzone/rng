@@ -109,14 +109,11 @@
 	}
 
 	function generate() {
-		const actualMin = incl === "including" ? min : min + 1;
-		const actualMax = incl === "including" ? max : max - 1;
-		const span = actualMax - actualMin + 1;
 		while (results.length < numbersToGen) {
-			let result = Math.floor(Math.random() * span) + actualMin;
+			let result = Math.floor(Math.random() * rangeSize) + effMin;
 			if (withRep === "without replacement") {
 				while (results.includes(result)) {
-					result = Math.floor(Math.random() * span) + actualMin;
+					result = Math.floor(Math.random() * rangeSize) + effMin;
 				}
 			}
 
@@ -129,6 +126,7 @@
 	{#if isLoading}
 		<div
 			id="loading-screen"
+			class="screen"
 			in:wipeIn={{ duration: 700, easing: cubicOut }}
 			out:wipeOut={{ duration: 700, easing: cubicIn }}
 		>
@@ -143,6 +141,7 @@
 	{:else if results.length > 0}
 		<div
 			id="results-screen"
+			class="screen"
 			in:wipeIn={{ duration: 700, easing: cubicOut }}
 			out:wipeOut={{ duration: 700, easing: cubicIn }}
 		>
@@ -171,6 +170,7 @@
 	{:else}
 		<div
 			id="generator-screen"
+			class="screen"
 			in:wipeIn={{ duration: 700, easing: cubicOut }}
 			out:wipeOut={{ duration: 700, easing: cubicIn }}
 		>
@@ -282,19 +282,20 @@
 		color: var(--secondary);
 	}
 
-	/* Generator Screen */
-
-	#generator-screen {
+	.screen {
 		height: 100dvh;
 		width: 100dvw;
-
 		display: flex;
 		flex-direction: column;
 		align-items: center;
-		justify-content: space-evenly;
 		position: absolute;
 		z-index: 1;
 		background-color: var(--bg);
+	}
+
+	/* Generator Screen */
+	#generator-screen {
+		justify-content: space-evenly;
 	}
 	#statement {
 		margin: 0;
@@ -334,16 +335,8 @@
 
 	/* Loading Screen Styles */
 	#loading-screen {
-		height: 100dvh;
-		width: 100dvw;
-		display: flex;
-		flex-direction: column;
-		align-items: center;
 		justify-content: center;
-		position: absolute;
 		gap: 2em;
-		z-index: 1;
-		background-color: var(--bg);
 		padding-bottom: 3em;
 	}
 
@@ -399,16 +392,7 @@
 
 	/* Results Screen */
 	#results-screen {
-		height: 100dvh;
-		width: 100dvw;
-		display: flex;
-		flex-direction: column;
-		align-items: center;
 		justify-content: space-evenly;
-
-		position: absolute;
-		z-index: 1;
-		background-color: var(--bg);
 	}
 	#copy-button {
 		position: absolute;
