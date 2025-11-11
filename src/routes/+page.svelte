@@ -344,10 +344,11 @@
 		gap: 2em;
 		z-index: 1;
 		background-color: var(--bg);
+		margin-bottom: 3em;
 	}
 
 	.loading-text {
-		font-size: 1.5em;
+		font-size: 1.75em;
 		color: var(--primary);
 		text-transform: uppercase;
 		letter-spacing: 0.1em;
@@ -432,6 +433,7 @@
 		padding: 0;
 	}
 	h1 {
+		color: var(--primary);
 		margin: 0;
 		padding: 0;
 	}
@@ -441,7 +443,7 @@
 			font-size: 2.5em;
 		}
 		#loading-screen {
-			font-size: 0.8em;
+			font-size: 0.75em;
 		}
 		#copy-button {
 			top: 10.75em;
