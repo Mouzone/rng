@@ -440,9 +440,12 @@
 		#page {
 			font-size: 2.5em;
 		}
+		#loading-screen {
+			font-size: 0.8em;
+		}
 		#copy-button {
 			top: 10.75em;
-			right: 0.5em;
+			right: 0em;
 		}
 		#results-container {
 			height: 40dvh;
