@@ -132,13 +132,13 @@
 			in:wipeIn={{ duration: 700, easing: cubicOut }}
 			out:wipeOut={{ duration: 700, easing: cubicIn }}
 		>
+			<p class="loading-text">Generating</p>
 			<div class="funk-loader">
 				<div class="dot"></div>
 				<div class="dot"></div>
 				<div class="dot"></div>
 				<div class="dot"></div>
 			</div>
-			<p class="loading-text">Gettin' Funky...</p>
 		</div>
 	{:else if results.length > 0}
 		<div
@@ -294,6 +294,7 @@
 		justify-content: space-evenly;
 		position: absolute;
 		z-index: 1;
+		background-color: var(--bg);
 	}
 	#statement {
 		margin: 0;
@@ -342,6 +343,7 @@
 		position: absolute;
 		gap: 2em;
 		z-index: 1;
+		background-color: var(--bg);
 	}
 
 	.loading-text {
@@ -349,10 +351,12 @@
 		color: var(--primary);
 		text-transform: uppercase;
 		letter-spacing: 0.1em;
+		margin-bottom: -1em;
 	}
 
 	.funk-loader {
 		display: flex;
+		margin-top: 0;
 		gap: 1em;
 	}
 
@@ -403,6 +407,7 @@
 
 		position: absolute;
 		z-index: 1;
+		background-color: var(--bg);
 	}
 	#copy-button {
 		position: absolute;
