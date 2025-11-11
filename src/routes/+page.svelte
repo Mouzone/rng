@@ -344,7 +344,7 @@
 		gap: 2em;
 		z-index: 1;
 		background-color: var(--bg);
-		margin-bottom: 3em;
+		padding-bottom: 3em;
 	}
 
 	.loading-text {
