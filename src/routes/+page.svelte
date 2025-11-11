@@ -15,7 +15,10 @@
 				// t goes from 0 to 1
 				// 0: clip-path: inset(0 0 0 100%) (hidden)
 				// 1: clip-path: inset(0 0 0 0%) (visible)
-				return `clip-path: inset(0 0 0 ${100 - t * 100}%)`;
+				return `
+					clip-path: inset(0 0 0 ${100 - t * 100}%);
+					z-index: 2; /* Incoming screen is 'on top' */
+				`;
 			},
 		};
 	}
@@ -34,7 +37,10 @@
 				// t goes from 1 to 0
 				// 1: clip-path: inset(0 0% 0 0) (visible)
 				// 0: clip-path: inset(0 100% 0 0) (hidden)
-				return `clip-path: inset(0 ${100 - t * 100}% 0 0)`;
+				return `
+					clip-path: inset(0 ${100 - t * 100}% 0 0);
+					z-index: 1; /* Outgoing screen is 'underneath' */
+				`;
 			},
 		};
 	}
@@ -73,14 +79,12 @@
 
 	function handleInput(e: Event) {
 		const target = e.currentTarget as HTMLInputElement;
-
 		if (target.value.length === 0) {
 			return "0";
 		}
 
 		const digitsOnly = target.value.replace(/\D/g, "");
 		const noLeadingZeros = digitsOnly.replace(/^0+/, "");
-
 		if (digitsOnly.length > 0 && noLeadingZeros.length === 0) {
 			return "0";
 		}
@@ -90,7 +94,6 @@
 
 	async function startGeneration() {
 		isLoading = true;
-
 		await new Promise((resolve) => setTimeout(resolve, 1500));
 
 		generate();
@@ -99,7 +102,6 @@
 
 	async function returnToGenerator() {
 		isLoading = true;
-
 		await new Promise((resolve) => setTimeout(resolve, 1500));
 
 		results.length = 0;
@@ -261,7 +263,6 @@
 		justify-content: center;
 
 		font-size: 3em;
-
 		position: relative;
 	}
 
@@ -292,6 +293,7 @@
 		align-items: center;
 		justify-content: space-evenly;
 		position: absolute;
+		z-index: 1;
 	}
 	#statement {
 		margin: 0;
@@ -308,7 +310,6 @@
 		appearance: none;
 		border: none;
 		background-color: transparent;
-
 		text-align: center;
 		line-height: 1.8em;
 		text-decoration-line: underline;
@@ -340,6 +341,7 @@
 		justify-content: center;
 		position: absolute;
 		gap: 2em;
+		z-index: 1;
 	}
 
 	.loading-text {
@@ -373,7 +375,7 @@
 		background-color: var(--tertiary);
 	}
 	.funk-loader .dot:nth-child(4) {
-		background-color: var(--primary); /* Repeat a color */
+		background-color: var(--primary);
 		animation-delay: 0.16s;
 	}
 
@@ -400,6 +402,7 @@
 		justify-content: space-evenly;
 
 		position: absolute;
+		z-index: 1;
 	}
 	#copy-button {
 		position: absolute;
